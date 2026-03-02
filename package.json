@@ -1,6 +1,6 @@
 {
   "name": "vibecode-check",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Your React code's health check-up. One command. Zero config. Actually fixes your code.",
   "bin": {
     "vibecode-check": "dist/cli.js"
@@ -37,13 +37,13 @@
     "ai-friendly"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/Hopsule/vibechecker#readme",
+  "homepage": "https://github.com/Hopsule/vibecode-check#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Hopsule/vibechecker.git"
+    "url": "git+https://github.com/Hopsule/vibecode-check.git"
   },
   "bugs": {
-    "url": "https://github.com/Hopsule/vibechecker/issues"
+    "url": "https://github.com/Hopsule/vibecode-check/issues"
   },
   "publishConfig": {
     "access": "public"

@@ -1,4 +1,4 @@
-# Contributing to vibechecker
+# Contributing to vibecode-check
 
 ## Adding a new rule
 

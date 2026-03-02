@@ -1,4 +1,4 @@
-name: vibechecker
+name: vibecode-check
 
 on:
   push:
@@ -27,6 +27,6 @@ jobs:
       - name: Test
         run: npm test
 
-      - name: Run vibechecker (self-scan)
+      - name: Run vibecode-check (self-scan)
         run: node dist/cli.js . --strict
         continue-on-error: true

@@ -1,19 +1,19 @@
-# Example: Post vibechecker score as a PR comment.
-# Use this in your repo by adding a step that runs vibechecker and posts --ci-comment output.
+# Example: Post vibecode-check score as a PR comment.
+# Use this in your repo by adding a step that runs vibecode-check and posts --ci-comment output.
 #
 # In your repo:
 # 1. Add a job that runs on pull_request.
 # 2. Run: npx vibecode-check . --ci-comment > comment.md (use continue-on-error: true if you don't want to fail the build).
 # 3. Use actions/github-script to create or update a comment with the contents of comment.md.
 
-name: vibechecker PR comment
+name: vibecode-check PR comment
 
 on:
   pull_request:
     branches: [main, master]
 
 jobs:
-  vibechecker-comment:
+  vibecode-check-comment:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -30,8 +30,8 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Run vibechecker and capture CI comment
-        id: vibechecker
+      - name: Run vibecode-check and capture CI comment
+        id: vibecode-check
         run: |
           node dist/cli.js . --ci-comment > comment.md 2>&1 || true
           echo "comment<<EOF" >> $GITHUB_STEP_SUMMARY
@@ -39,7 +39,7 @@ jobs:
           echo "EOF" >> $GITHUB_STEP_SUMMARY
         continue-on-error: true
 
-      - name: Comment PR with vibechecker result
+      - name: Comment PR with vibecode-check result
         if: always() && github.event_name == 'pull_request'
         uses: actions/github-script@v7
         with:
@@ -49,15 +49,15 @@ jobs:
             try {
               body = fs.readFileSync('comment.md', 'utf8');
             } catch (e) {
-              body = 'vibechecker could not run (e.g. no JS/TS files).';
+              body = 'vibecode-check could not run (e.g. no JS/TS files).';
             }
             const { data: comments } = await github.rest.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
             });
-            const botComment = comments.find(c => c.user.type === 'Bot' && c.body.includes('## vibechecker'));
-            body = body + '\n\n---\n*Powered by [vibechecker](https://github.com/Hopsule/vibechecker)*';
+            const botComment = comments.find(c => c.user.type === 'Bot' && c.body.includes('## vibecode-check'));
+            body = body + '\n\n---\n*Powered by [vibecode-check](https://github.com/Hopsule/vibecode-check)*';
             if (botComment) {
               await github.rest.issues.updateComment({
                 owner: context.repo.owner,

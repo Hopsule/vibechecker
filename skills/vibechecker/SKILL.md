@@ -1,4 +1,4 @@
-# vibechecker skill
+# vibecode-check skill
 
 Use this when the user wants to check or improve React code health in their project.
 
@@ -11,7 +11,7 @@ Use this when the user wants to check or improve React code health in their proj
 
 1. **Scan the project:** Run `npx vibecode-check .` (or `npx vibecode-check <path>`). If the project is Next.js, use `--next` for the full rule set.
 
-2. **Interpret output:** vibechecker prints:
+2. **Interpret output:** vibecode-check prints:
    - Rule id, count, and short message per issue group
    - Score (0–100) and label (Excellent / Great / Needs work / Critical)
    - `[fixable]` means the issue can be fixed with `--fix`

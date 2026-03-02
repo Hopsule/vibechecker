@@ -246,7 +246,7 @@ export function formatAiPrompt(
   framework: Framework | undefined
 ): string {
   const lines: string[] = [
-    `vibechecker report · ${framework ?? 'detected'} · ${totalFiles} files · score ${result.score} (${result.label})`,
+    `vibecode-check report · ${framework ?? 'detected'} · ${totalFiles} files · score ${result.score} (${result.label})`,
     `${result.errors} errors, ${result.warnings} warnings`,
     '',
     '---',
@@ -278,14 +278,14 @@ function badgeColor(score: number): string {
 }
 
 /**
- * Returns markdown for a shields.io badge. Use in README: [![vibechecker](url)](url)
+ * Returns markdown for a shields.io badge. Use in README: [![vibecode-check](url)](url)
  */
 export function formatBadge(result: ScoreResult): string {
   const score = result.score;
   const color = badgeColor(score);
   const message = `${score}%2F100`;
-  const url = `https://img.shields.io/badge/vibechecker-${message}-${color}`;
-  return `[![vibecode-check score](${url})](https://github.com/Hopsule/vibechecker)`;
+  const url = `https://img.shields.io/badge/vibecode--check-${message}-${color}`;
+  return `[![vibecode-check score](${url})](https://github.com/Hopsule/vibecode-check)`;
 }
 
 /**
@@ -298,7 +298,7 @@ export function formatCiComment(
 ): string {
   const fw = framework ?? 'detected';
   const lines: string[] = [
-    '## vibechecker',
+    '## vibecode-check',
     '',
     `**Score:** **${result.score}**/100 — ${result.label}`,
     '',
