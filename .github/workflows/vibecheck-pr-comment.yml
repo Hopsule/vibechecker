@@ -3,7 +3,7 @@
 #
 # In your repo:
 # 1. Add a job that runs on pull_request.
-# 2. Run: npx @hopsule/vibechecker . --ci-comment > comment.md (use continue-on-error: true if you don't want to fail the build).
+# 2. Run: npx vibecode-check . --ci-comment > comment.md (use continue-on-error: true if you don't want to fail the build).
 # 3. Use actions/github-script to create or update a comment with the contents of comment.md.
 
 name: vibechecker PR comment

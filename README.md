@@ -1,8 +1,8 @@
-# vibechecker
+# vibecode-check
 
 **Your React code's health check-up. One command. Zero config. Actually fixes your code.**
 
-[![npm version](https://img.shields.io/npm/v/@hopsule/vibechecker.svg)](https://www.npmjs.com/package/@hopsule/vibechecker)
+[![npm version](https://img.shields.io/npm/v/vibecode-check.svg)](https://www.npmjs.com/package/vibecode-check)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Lightweight React code health CLI with **autofix** — no ESLint dependency, framework auto-detection (Next.js, Vite, Remix, React), and a copy-paste fix for every issue. Run it once and get a score, a clear report, and fixes you can apply with `--fix` or paste into your AI assistant with `--ai`.
@@ -12,26 +12,24 @@ Lightweight React code health CLI with **autofix** — no ESLint dependency, fra
 ## Quick start
 
 ```bash
-npx @hopsule/vibechecker .
+npx vibecode-check .
 ```
 
 That's it. Framework is detected from your `package.json`; no config required.
 
-**401 from GitHub Packages?** This package is public. Remove the `//npm.pkg.github.com/:_authToken=...` line from your `.npmrc` (keep `@hopsule:registry=https://npm.pkg.github.com`). Public packages don't need a token; an invalid one causes 401.
-
 ```bash
 # Apply safe fixes automatically
-npx @hopsule/vibechecker . --fix
+npx vibecode-check . --fix
 
 # Get a badge for your README
-npx @hopsule/vibechecker . --badge
+npx vibecode-check . --badge
 ```
 
 ---
 
-## Why vibechecker?
+## Why vibecode-check?
 
-| | vibechecker | ESLint + plugins | Biome |
+| | vibecode-check | ESLint + plugins | Biome |
 |--|-------------|------------------|--------|
 | **React/Next aware** | Yes, built-in | Via many plugins | Limited |
 | **Autofix out of the box** | Yes | Per-rule | Yes |
@@ -41,14 +39,14 @@ npx @hopsule/vibechecker . --badge
 | **AI-friendly output** | `--ai` one-paste block | No | No |
 | **Bundle size** | Small, no ESLint | Large | Small |
 
-vibechecker focuses on **20+ high-impact rules** (correctness, performance, accessibility, best practice) with a clear report and a fix suggestion — or autofix — for each. No plugin matrix, no shared config to maintain.
+vibecode-check focuses on **24 high-impact rules** (correctness, performance, accessibility, best practice) with a clear report and a fix suggestion — or autofix — for each. No plugin matrix, no shared config to maintain.
 
 ---
 
 ## What you see
 
 ```
-  vibechecker v0.2.0
+  vibecode-check v0.3.0
   next  ·  127 files  ·  0.8s
 
   ────────────────────────────────────────
@@ -85,14 +83,14 @@ vibechecker focuses on **20+ high-impact rules** (correctness, performance, acce
 ## Install
 
 ```bash
-npx @hopsule/vibechecker .
+npx vibecode-check .
 ```
 
 Or install globally:
 
 ```bash
-npm install -g @hopsule/vibechecker
-vibechecker .
+npm install -g vibecode-check
+vibecode-check .
 ```
 
 ---
@@ -100,7 +98,7 @@ vibechecker .
 ## Usage
 
 ```bash
-vibechecker [path] [options]
+vibecode-check [path] [options]
 ```
 
 | Option | Description |
@@ -206,7 +204,7 @@ Optional `vibechecker.config.json` or `.vibechecker.json` in project root:
 Add a score badge to your README:
 
 ```bash
-npx @hopsule/vibechecker . --badge
+npx vibecode-check . --badge
 ```
 
 Paste the output into your README. The badge color reflects the score (green / yellow / orange / red).
@@ -215,23 +213,22 @@ Paste the output into your README. The badge color reflects the score (green / y
 
 ## CI and PR comment
 
-Run vibechecker in CI and optionally post the score as a PR comment:
+Run vibecode-check in CI and optionally post the score as a PR comment:
 
 ```yaml
 # .github/workflows/vibecheck.yml
-- run: npx @hopsule/vibechecker . --ci-comment > vibechecker-comment.md
+- run: npx vibecode-check . --ci-comment > vibecode-check-comment.md
   continue-on-error: true
-# Then use actions/github-script or a comment action to post the markdown to the PR.
 ```
 
-This repo includes an example workflow [.github/workflows/vibecheck-pr-comment.yml](.github/workflows/vibecheck-pr-comment.yml) that runs on pull requests and posts the `--ci-comment` output as a bot comment (create or update). You can copy that job into your own repo and switch to `npx @hopsule/vibechecker . --ci-comment` if you don't build from source.
+See [.github/workflows/vibecheck-pr-comment.yml](.github/workflows/vibecheck-pr-comment.yml) for a full example.
 
 ---
 
 ## Programmatic API
 
 ```ts
-import { scan, computeScore, applyFixes } from '@hopsule/vibechecker';
+import { scan, computeScore, applyFixes } from 'vibecode-check';
 
 const { diagnostics, totalFiles } = await scan({
   targetPath: './src',

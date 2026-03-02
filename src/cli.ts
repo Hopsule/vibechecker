@@ -59,7 +59,7 @@ function detectFramework(cwd: string): Framework | undefined {
 }
 
 program
-  .name('vibechecker')
+  .name('vibecode-check')
   .description('React code health CLI with autofix — one command, actually fixes your code')
   .version(require(path.join(__dirname, '..', 'package.json')).version)
   .argument('[path]', 'Path to scan', '.')

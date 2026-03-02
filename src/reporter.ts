@@ -67,7 +67,7 @@ export function printHeader(
 ): void {
   const fw = framework ? framework : 'detected';
   const version = options?.version ? ` v${options.version}` : '';
-  let line = pc.bold('vibechecker' + version) + '  ·  ' + pc.cyan(fw) + '  ·  ' + pc.dim(`${totalFiles} files`);
+  let line = pc.bold('vibecode-check' + version) + '  ·  ' + pc.cyan(fw) + '  ·  ' + pc.dim(`${totalFiles} files`);
   if (options?.durationMs != null && options.durationMs >= 0) {
     const sec = (options.durationMs / 1000).toFixed(1);
     line += '  ·  ' + pc.dim(`${sec}s`);
@@ -285,7 +285,7 @@ export function formatBadge(result: ScoreResult): string {
   const color = badgeColor(score);
   const message = `${score}%2F100`;
   const url = `https://img.shields.io/badge/vibechecker-${message}-${color}`;
-  return `[![vibechecker score](${url})](https://github.com/Hopsule/vibechecker)`;
+  return `[![vibecode-check score](${url})](https://github.com/Hopsule/vibechecker)`;
 }
 
 /**
