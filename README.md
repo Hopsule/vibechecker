@@ -15,8 +15,13 @@ Lightweight React code health CLI with **autofix** — no ESLint dependency, fra
 npx @hopsule/vibechecker .
 ```
 
-That's it. Framework is detected from your `package.json`; no config required.  
-(Published to both **npm** and **GitHub Packages** — works with `@hopsule` scope on either registry.)
+That's it. Framework is detected from your `package.json`; no config required.
+
+**If you use `@hopsule` → GitHub Packages** and get 401, add this to your project (or global) `.npmrc` so this package is always fetched from npm:
+
+```ini
+@hopsule/vibechecker:registry=https://registry.npmjs.org/
+```
 
 ```bash
 # Apply safe fixes automatically
