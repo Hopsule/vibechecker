@@ -17,6 +17,8 @@ npx vibecode-check .
 
 That's it. Framework is detected from your `package.json`; no config required.
 
+In a terminal (TTY), you get an **interactive UI**: use arrow keys to move, Enter to expand categories and open rule details, **f** to apply fixes for the selected rule, **q** to quit. Use `--no-interactive` for static output (e.g. in scripts or CI).
+
 ```bash
 # Apply safe fixes automatically
 npx vibecode-check . --fix

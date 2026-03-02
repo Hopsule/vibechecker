@@ -1,7 +1,12 @@
+import { createRequire } from 'module';
 import { Command } from 'commander';
 import * as path from 'path';
 import * as readline from 'readline';
 import { execSync } from 'child_process';
+import { fileURLToPath } from 'url';
+
+const require = createRequire(import.meta.url);
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 import { scan } from './scanner';
 import { computeScore } from './scorer';
 import { applyFixes } from './fixer';
@@ -19,6 +24,9 @@ import {
 } from './reporter';
 import { ruleMap } from './rules';
 import type { Framework } from './types';
+import React from 'react';
+import { render } from 'ink';
+import { Root } from './tui/Root.js';
 
 const program = new Command();
 
@@ -76,6 +84,7 @@ program
   .option('--ai', 'Output a single block for pasting into an AI assistant')
   .option('--badge', 'Output shields.io badge markdown for README')
   .option('--ci-comment', 'Output markdown for GitHub PR comment')
+  .option('--no-interactive', 'Disable interactive TUI; use static output')
   .option('--strict', 'Exit 1 on warnings too (or set strict: true in config)')
   .action(async (targetPath: string) => {
     const opts = program.opts();
@@ -110,6 +119,40 @@ program
     if (opts.rule && !ruleMap.has(opts.rule)) {
       console.error(`Unknown rule: ${opts.rule}. Use --list-rules to see rules.`);
       process.exit(1);
+    }
+
+    const useTUI =
+      process.stdout.isTTY &&
+      opts.interactive !== false &&
+      opts.format === undefined &&
+      opts.ai !== true &&
+      opts.badge !== true &&
+      opts.ciComment !== true &&
+      !opts.fix &&
+      !opts.fixDryRun;
+
+    if (useTUI) {
+      let version: string | undefined;
+      try {
+        const pkg = require(path.join(__dirname, '..', 'package.json'));
+        version = pkg.version;
+      } catch {
+        version = undefined;
+      }
+      render(
+        React.createElement(Root, {
+          scanOptions: {
+            targetPath: resolvedPath,
+            framework,
+            configIgnoreFiles,
+            configIgnoredRules,
+            config: config ?? undefined,
+          },
+          version,
+          onExit: (code: number) => process.exit(code),
+        })
+      );
+      return;
     }
 
     const startTime = performance.now();
