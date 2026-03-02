@@ -1,3 +1,4 @@
+# NPM_TOKEN must be an "Automation" token (npm) so 2FA/OTP is not required in CI.
 name: Publish to npm
 
 on:
