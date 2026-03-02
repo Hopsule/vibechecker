@@ -2,7 +2,7 @@
 
 **Your React code's health check-up. One command. Zero config. Actually fixes your code.**
 
-[![npm version](https://img.shields.io/npm/v/vibechecker.svg)](https://www.npmjs.com/package/vibechecker)
+[![npm version](https://img.shields.io/npm/v/@hopsule/vibechecker.svg)](https://www.npmjs.com/package/@hopsule/vibechecker)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Lightweight React code health CLI with **autofix** — no ESLint dependency, framework auto-detection (Next.js, Vite, Remix, React), and a copy-paste fix for every issue. Run it once and get a score, a clear report, and fixes you can apply with `--fix` or paste into your AI assistant with `--ai`.
@@ -12,17 +12,17 @@ Lightweight React code health CLI with **autofix** — no ESLint dependency, fra
 ## Quick start
 
 ```bash
-npx vibechecker .
+npx @hopsule/vibechecker .
 ```
 
 That's it. Framework is detected from your `package.json`; no config required.
 
 ```bash
 # Apply safe fixes automatically
-npx vibechecker . --fix
+npx @hopsule/vibechecker . --fix
 
 # Get a badge for your README
-npx vibechecker . --badge
+npx @hopsule/vibechecker . --badge
 ```
 
 ---
@@ -83,13 +83,13 @@ vibechecker focuses on **20+ high-impact rules** (correctness, performance, acce
 ## Install
 
 ```bash
-npx vibechecker .
+npx @hopsule/vibechecker .
 ```
 
 Or install globally:
 
 ```bash
-npm install -g vibechecker
+npm install -g @hopsule/vibechecker
 vibechecker .
 ```
 
@@ -204,7 +204,7 @@ Optional `vibechecker.config.json` or `.vibechecker.json` in project root:
 Add a score badge to your README:
 
 ```bash
-npx vibechecker . --badge
+npx @hopsule/vibechecker . --badge
 ```
 
 Paste the output into your README. The badge color reflects the score (green / yellow / orange / red).
@@ -217,19 +217,19 @@ Run vibechecker in CI and optionally post the score as a PR comment:
 
 ```yaml
 # .github/workflows/vibecheck.yml
-- run: npx vibechecker . --ci-comment > vibechecker-comment.md
+- run: npx @hopsule/vibechecker . --ci-comment > vibechecker-comment.md
   continue-on-error: true
 # Then use actions/github-script or a comment action to post the markdown to the PR.
 ```
 
-This repo includes an example workflow [.github/workflows/vibecheck-pr-comment.yml](.github/workflows/vibecheck-pr-comment.yml) that runs on pull requests and posts the `--ci-comment` output as a bot comment (create or update). You can copy that job into your own repo and switch to `npx vibechecker . --ci-comment` if you don't build from source.
+This repo includes an example workflow [.github/workflows/vibecheck-pr-comment.yml](.github/workflows/vibecheck-pr-comment.yml) that runs on pull requests and posts the `--ci-comment` output as a bot comment (create or update). You can copy that job into your own repo and switch to `npx @hopsule/vibechecker . --ci-comment` if you don't build from source.
 
 ---
 
 ## Programmatic API
 
 ```ts
-import { scan, computeScore, applyFixes } from 'vibechecker';
+import { scan, computeScore, applyFixes } from '@hopsule/vibechecker';
 
 const { diagnostics, totalFiles } = await scan({
   targetPath: './src',

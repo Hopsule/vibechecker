@@ -1,5 +1,5 @@
 {
-  "name": "vibechecker",
+  "name": "@hopsule/vibechecker",
   "version": "0.2.0",
   "description": "Your React code's health check-up. One command. Zero config. Actually fixes your code.",
   "bin": {
